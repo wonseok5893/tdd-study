@@ -7,6 +7,14 @@ public class PasswordStrengthMeter {
             return PasswordStrength.NORMAL;
         boolean containsNum = isContainsNum(password);
         if (!containsNum) return PasswordStrength.NORMAL;
+        boolean containsUpper = false;
+        for (char c : password.toCharArray()) {
+            if(Character.isUpperCase(c)){
+                containsUpper = true;
+                break;
+            }
+        }
+        if(!containsUpper) return PasswordStrength.NORMAL;
         return PasswordStrength.STRONG;
     }
 
