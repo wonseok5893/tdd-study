@@ -33,4 +33,9 @@ public class PasswordStrengthMeterTest {
     void 값이_없는_경우() {
         assertStrength(null,PasswordStrength.INVALID);
     }
+
+    @Test
+    void 암호가_대문자를_포함하지_않는_조건을_제외한_모든_조건을_충족하면_암호_강도는_보통() {
+        assertStrength("aasdasdasdsad12",PasswordStrength.NORMAL);
+    }
 }
