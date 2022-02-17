@@ -52,4 +52,9 @@ public class PasswordStrengthMeterTest {
     void 암호가_대문자를_포함하는_조건만_충족하는_암호_강도는_약함() {
         assertStrength("asdABCD",PasswordStrength.WEEK);
     }
+
+    @Test
+    void 빈_문자열이_들어온_경우() {
+        assertStrength("", PasswordStrength.INVALID);
+    }
 }
