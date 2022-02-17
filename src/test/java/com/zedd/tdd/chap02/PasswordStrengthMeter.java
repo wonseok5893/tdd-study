@@ -2,17 +2,17 @@ package com.zedd.tdd.chap02;
 
 public class PasswordStrengthMeter {
     public PasswordStrength check(String password) {
-        if (password == null) return PasswordStrength.INVALID;
+        if (password == null || password.isEmpty()) return PasswordStrength.INVALID;
         int metCount = 0;
         boolean lengthEnough = password.length() >= 8;
         boolean containsNum = isContainsNum(password);
         boolean containsUpper = isContainsUpper(password);
 
-        if(lengthEnough)metCount++;
-        if(containsNum)metCount++;
-        if(containsUpper)metCount++;
+        if (lengthEnough) metCount++;
+        if (containsNum) metCount++;
+        if (containsUpper) metCount++;
 
-        if(metCount==1) return PasswordStrength.WEEK;
+        if (metCount == 1) return PasswordStrength.WEEK;
 
         if (!lengthEnough) return PasswordStrength.NORMAL;
         if (!containsNum) return PasswordStrength.NORMAL;
