@@ -4,13 +4,10 @@ public class PasswordStrengthMeter {
     public PasswordStrength check(String password) {
         if (password == null || password.isEmpty()) return PasswordStrength.INVALID;
         int metCount = 0;
-        boolean lengthEnough = password.length() >= 8;
-        boolean containsNum = isContainsNum(password);
-        boolean containsUpper = isContainsUpper(password);
 
-        if (lengthEnough) metCount++;
-        if (containsNum) metCount++;
-        if (containsUpper) metCount++;
+        if (password.length() >= 8) metCount++;
+        if (isContainsNum(password)) metCount++;
+        if (isContainsUpper(password)) metCount++;
 
         if (metCount == 1) return PasswordStrength.WEEK;
         if (metCount == 2) return PasswordStrength.NORMAL;
