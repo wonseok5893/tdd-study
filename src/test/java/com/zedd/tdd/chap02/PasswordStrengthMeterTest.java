@@ -31,17 +31,21 @@ public class PasswordStrengthMeterTest {
 
     @Test
     void 값이_없는_경우() {
-        assertStrength(null,PasswordStrength.INVALID);
+        assertStrength(null, PasswordStrength.INVALID);
     }
 
     @Test
     void 암호가_대문자를_포함하지_않는_조건을_제외한_모든_조건을_충족하면_암호_강도는_보통() {
-        assertStrength("aasdasdasdsad12",PasswordStrength.NORMAL);
+        assertStrength("aasdasdasdsad12", PasswordStrength.NORMAL);
     }
 
     @Test
     void 암호가_길이가_8글자_이상_조건만_충족하면_암호_강도는_약함() {
-        assertStrength("aasdasdasdsasd",PasswordStrength.WEEK);
+        assertStrength("aasdasdasdsasd", PasswordStrength.WEEK);
     }
 
+    @Test
+    void 암호가_숫자를_포함하는_조건만_충족하는_암호_강도는_약함() {
+        assertStrength("12312",PasswordStrength.WEEK);
+    }
 }
