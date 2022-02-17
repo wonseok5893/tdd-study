@@ -14,4 +14,12 @@ public class ExpirationDeterminerTest {
         LocalDateTime newExpiredDate = determiner.determine(beforeExpiredDate, 100000);
         assertEquals(newExpiredDate, beforeExpiredDate.plusYears(1));
     }
+
+    @Test
+    void 만원을_납부하면_서비스를_1달_제공() {
+        ExpirationDeterminer determiner = new ExpirationDeterminer();
+        LocalDateTime beforeExpiredDate = LocalDateTime.now();
+        LocalDateTime newExpiredDate = determiner.determine(beforeExpiredDate, 10000);
+        assertEquals(newExpiredDate, beforeExpiredDate.plusMonths(1));
+    }
 }
