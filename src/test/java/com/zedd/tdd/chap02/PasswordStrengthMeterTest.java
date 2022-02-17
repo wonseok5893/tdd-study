@@ -46,15 +46,21 @@ public class PasswordStrengthMeterTest {
 
     @Test
     void 암호가_숫자를_포함하는_조건만_충족하는_암호_강도는_약함() {
-        assertStrength("12312",PasswordStrength.WEEK);
+        assertStrength("12312", PasswordStrength.WEEK);
     }
+
     @Test
     void 암호가_대문자를_포함하는_조건만_충족하는_암호_강도는_약함() {
-        assertStrength("asdABCD",PasswordStrength.WEEK);
+        assertStrength("asdABCD", PasswordStrength.WEEK);
     }
 
     @Test
     void 빈_문자열이_들어온_경우() {
         assertStrength("", PasswordStrength.INVALID);
+    }
+
+    @Test
+    void 아무_조건도_충족하지_못한_경우() {
+        assertStrength("abc", PasswordStrength.WEEK);
     }
 }
