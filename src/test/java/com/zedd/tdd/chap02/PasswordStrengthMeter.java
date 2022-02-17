@@ -13,10 +13,7 @@ public class PasswordStrengthMeter {
         if (containsUpper) metCount++;
 
         if (metCount == 1) return PasswordStrength.WEEK;
-
-        if (!lengthEnough) return PasswordStrength.NORMAL;
-        if (!containsNum) return PasswordStrength.NORMAL;
-        if (!containsUpper) return PasswordStrength.NORMAL;
+        if (metCount == 2) return PasswordStrength.NORMAL;
         return PasswordStrength.STRONG;
     }
 
