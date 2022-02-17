@@ -8,6 +8,7 @@ public class PasswordStrengthMeter {
         boolean containsUpper = isContainsUpper(password);
         if (lengthEnough && !containsNum && !containsUpper) return PasswordStrength.WEEK;
         if (containsNum && !lengthEnough && !containsUpper) return PasswordStrength.WEEK;
+        if (containsUpper && !containsNum && !lengthEnough) return PasswordStrength.WEEK;
         if (!lengthEnough) return PasswordStrength.NORMAL;
         if (!containsNum) return PasswordStrength.NORMAL;
         if (!containsUpper) return PasswordStrength.NORMAL;
