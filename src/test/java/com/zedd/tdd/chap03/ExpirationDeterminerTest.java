@@ -30,4 +30,9 @@ public class ExpirationDeterminerTest {
         assertExpireDate(20000, beforeDateTime.plusMonths(2));
         assertExpireDate(30000, beforeDateTime.plusMonths(3));
     }
+
+    @Test
+    void 이십만원을_납부_하는_경우() {
+        assertExpireDate( 200000, beforeDateTime.plusYears(2));
+    }
 }
