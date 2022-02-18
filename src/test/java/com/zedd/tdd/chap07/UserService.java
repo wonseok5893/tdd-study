@@ -11,12 +11,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void register(String id, String pw, String email) {
+    public User register(String id, String pw, String email) {
         if(passwordChecker.checkPassword(pw)==PasswordStrength.WEEK)
             throw new WeekPasswordException();
         User user = userRepository.findById(id);
         if(user!=null)
             throw new DuplicateIdException();
-        userRepository.save(new User(id, pw, email));
+        return userRepository.save(new User(id, pw, email));
     }
 }
