@@ -25,4 +25,11 @@ public class ExpirationDeterminerTest {
         LocalDateTime beforeDateTime = LocalDateTime.now();
         assertExpireDate(beforeDateTime, 10000, beforeDateTime.plusMonths(1));
     }
+
+    @Test
+    void 두달이상_요금을_납부할_수_있다() {
+        LocalDateTime beforeDateTime = LocalDateTime.now();
+        assertExpireDate(beforeDateTime, 20000, beforeDateTime.plusMonths(2));
+        assertExpireDate(beforeDateTime, 30000, beforeDateTime.plusMonths(3));
+    }
 }
