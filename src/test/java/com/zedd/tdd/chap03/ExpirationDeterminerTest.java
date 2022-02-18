@@ -7,19 +7,22 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExpirationDeterminerTest {
+
+    private void assertExpireDate(LocalDateTime beforeDateTime, int pay, LocalDateTime expectedDateTime) {
+        ExpirationDeterminer determiner = new ExpirationDeterminer();
+        LocalDateTime newExpiredDate = determiner.determine(beforeDateTime, pay);
+        assertEquals(newExpiredDate, expectedDateTime);
+    }
+
     @Test
     void 십만원을_납부하면_서비스를_1년_제공() {
-        ExpirationDeterminer determiner = new ExpirationDeterminer();
-        LocalDateTime beforeExpiredDate = LocalDateTime.now();
-        LocalDateTime newExpiredDate = determiner.determine(beforeExpiredDate, 100000);
-        assertEquals(newExpiredDate, beforeExpiredDate.plusYears(1));
+        LocalDateTime beforeDateTime = LocalDateTime.now();
+        assertExpireDate(beforeDateTime, 100000, beforeDateTime.plusYears(1));
     }
 
     @Test
     void 만원을_납부하면_서비스를_1달_제공() {
-        ExpirationDeterminer determiner = new ExpirationDeterminer();
-        LocalDateTime beforeExpiredDate = LocalDateTime.now();
-        LocalDateTime newExpiredDate = determiner.determine(beforeExpiredDate, 10000);
-        assertEquals(newExpiredDate, beforeExpiredDate.plusMonths(1));
+        LocalDateTime beforeDateTime = LocalDateTime.now();
+        assertExpireDate(beforeDateTime, 10000, beforeDateTime.plusMonths(1));
     }
 }
