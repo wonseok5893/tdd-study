@@ -11,7 +11,9 @@ public class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        userService = new UserService();
+        PasswordChecker passwordChecker = new PasswordChecker();
+        UserRepository userRepository = new MemoryUserRepository();
+        userService = new UserService(passwordChecker, userRepository);
     }
 
     @Test
@@ -22,7 +24,7 @@ public class UserServiceTest {
     @Test
     void 비밀번호가_정상인_경우_success() {
         assertDoesNotThrow(()->{
-            userService.register("zedd", "1234", "zedd@example.com");
+            userService.register("zedd", "12345", "zedd@example.com");
         });
     }
 }
