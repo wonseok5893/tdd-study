@@ -14,6 +14,9 @@ public class UserService {
     public void register(String id, String pw, String email) {
         if(passwordChecker.checkPassword(pw)==PasswordStrength.WEEK)
             throw new WeekPasswordException();
+        User user = userRepository.findById(id);
+        if(user!=null)
+            throw new DuplicateIdException();
         userRepository.save(new User(id, pw, email));
     }
 }

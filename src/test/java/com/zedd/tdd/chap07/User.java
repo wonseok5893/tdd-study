@@ -10,4 +10,16 @@ public class User {
         this.pw = pw;
         this.email = email;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPw() {
+        return pw;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

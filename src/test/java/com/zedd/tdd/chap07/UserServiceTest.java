@@ -30,7 +30,8 @@ public class UserServiceTest {
 
     @Test
     void 동일한_id가_존재() {
+        userService.register("zedd", "12345", "zedd@example.com");
         assertThrows(DuplicateIdException.class,
-                () -> userService.register("zedd", "1234", "zedd.@example.com"));
+                () -> userService.register("zedd", "12345", "zedd.@example.com"));
     }
 }
