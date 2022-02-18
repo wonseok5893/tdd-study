@@ -3,6 +3,7 @@ package com.zedd.tdd.chap07;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UserServiceTest {
@@ -16,5 +17,12 @@ public class UserServiceTest {
     @Test
     void 비밀번호가_약함인_경우_throw_exception() {
         assertThrows(WeekPasswordException.class,()->userService.register("zedd","1234","zedd@example.com"));
+    }
+
+    @Test
+    void 비밀번호가_정상인_경우_success() {
+        assertDoesNotThrow(()->{
+            userService.register("zedd", "1234", "zedd@example.com");
+        });
     }
 }
