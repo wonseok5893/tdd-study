@@ -5,9 +5,7 @@ import java.time.LocalDateTime;
 public class ExpirationDeterminer {
 
     public LocalDateTime determine(LocalDateTime before, int pay) {
-        if (pay >= 100000)
-            return before.plusYears(pay / 100000);
-
-        return before.plusMonths(pay / 10000);
+        LocalDateTime temp = before.plusYears(pay / 100000);
+        return temp.plusMonths((pay % 100000) / 10000);
     }
 }

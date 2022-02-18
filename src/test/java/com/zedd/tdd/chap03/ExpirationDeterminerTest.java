@@ -3,6 +3,7 @@ package com.zedd.tdd.chap03;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -33,6 +34,18 @@ public class ExpirationDeterminerTest {
 
     @Test
     void 이십만원을_납부_하는_경우() {
-        assertExpireDate( 200000, beforeDateTime.plusYears(2));
+        assertExpireDate(200000, beforeDateTime.plusYears(2));
+    }
+
+    @Test
+    void N만원을_납부_하는_경우() {
+        IntStream.rangeClosed(1, 9)
+                .forEach(num -> assertExpireDate(num * 10000, beforeDateTime.plusMonths(num)));
+        IntStream.rangeClosed(10, 19)
+                .forEach(num -> {
+                    LocalDateTime temp = beforeDateTime.plusYears(1);
+                    assertExpireDate(num * 10000, temp.plusMonths(num % 10));
+                });
+
     }
 }
