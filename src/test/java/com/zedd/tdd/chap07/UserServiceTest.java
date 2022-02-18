@@ -17,14 +17,20 @@ public class UserServiceTest {
     }
 
     @Test
-    void 비밀번호가_약함인_경우_throw_exception() {
-        assertThrows(WeekPasswordException.class,()->userService.register("zedd","1234","zedd@example.com"));
+    void 비밀번호_강도가_약함인_경우_throw_exception() {
+        assertThrows(WeekPasswordException.class, () -> userService.register("zedd", "1234", "zedd@example.com"));
     }
 
     @Test
-    void 비밀번호가_정상인_경우_success() {
-        assertDoesNotThrow(()->{
+    void 비밀번호_강도가_정상인_경우_success() {
+        assertDoesNotThrow(() -> {
             userService.register("zedd", "12345", "zedd@example.com");
         });
+    }
+
+    @Test
+    void 동일한_id가_존재() {
+        assertThrows(DuplicateIdException.class,
+                () -> userService.register("zedd", "1234", "zedd.@example.com"));
     }
 }
