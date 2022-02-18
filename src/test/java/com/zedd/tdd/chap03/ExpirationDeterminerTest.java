@@ -48,4 +48,9 @@ public class ExpirationDeterminerTest {
                 });
 
     }
+
+    @Test
+    void 지불을_안한_경우() {
+        assertExpireDate(0, beforeDateTime);
+    }
 }
